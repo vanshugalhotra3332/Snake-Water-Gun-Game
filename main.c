@@ -57,17 +57,22 @@ int main()
     options[2] = "gun";
 
     printf("-------------------Snake Water Gun Game---------------\nHere we go.........\n");
-    printf("By the way What's your name?\n");
-    scanf("%s", &name);
+    printf("By the way What's your name?\n\n");
+    gets(name);
 
     do
     {
         srand(time(NULL));
         random = options[rand() % 3];
 
-        printf("What's your option:\n");
+        printf("\nWhat's your option:\n");
         scanf("%s", &user_opt);
 
+        while (strcmp(random, user_opt) == 0) // avoiding draws
+        {
+            random = options[rand() % 3];
+        }
+        
         // snake > water , water > gun , gun > snake
         if (strcmp(user_opt, "snake") == 0 || strcmp(user_opt, "water") == 0 || strcmp(user_opt, "gun") == 0)
         {
@@ -82,29 +87,29 @@ int main()
                 computer++;
             }
             
-            printf("Computer says: %s\n", random);
+            printf("\nComputer says: %s\n", random);
             printf("\nComputer:   %d\n", computer);
             printf("%s:   %d\n", name, user);
         }
 
         else
         {
-            printf("Heyo! Enter valid option:\n");
+            printf("\nHeyo! Enter valid option:\n");
         }
 
-        printf("Again?:  (yes/no) (1/0):\n");
+        printf("\nAgain? Seriously.:  (yes/no) (1/0):\n");
         scanf("%d", &again);
 
         if(again == 0)
         {
             if(computer > user)
             {
-                printf("Computer Won :(\n");
+                printf("\nComputer Won :(\n");
             }
 
             else if(user > computer)
             {
-                printf("Hurray! You Won :)\n");
+                printf("\nHurray! You Won :)\n");
             }
 
             else
